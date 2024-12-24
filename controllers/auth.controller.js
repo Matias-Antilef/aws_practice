@@ -17,8 +17,8 @@ const login = async (req, res) => {
         } else {
             return res.status(401).json({ message: 'Unauthorized' });
         }
-    } catch (error) {
-        return res.status(500).json({ message: 'Internal server error', error });
+    } catch (err) {
+        return res.status(500).json({ message: 'Internal server error', err });
     }
 };
 
@@ -37,8 +37,8 @@ const register = async (req, res) => {
 
         return res.status(201).json({ message: 'User created successfully' });
     
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error', error });
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error', err });
     }
 };
 
@@ -51,8 +51,8 @@ const getUsers = async (req, res) => {
         }
         return res.status(200).json({ message: 'Users:', userAll });
     
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error', error });
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error', err });
     }
 };
 
