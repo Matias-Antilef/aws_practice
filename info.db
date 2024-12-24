@@ -1,0 +1,31 @@
+drop database if exists aws_practice;
+create database aws_practice;
+use aws_practice;
+
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,       
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE product (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    stock INT NOT NULL,
+    image_url VARCHAR(255),
+    active BOOLEAN
+);
+
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    total_pay INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (product_id) REFERENCES product(id)
+);
+
+INSERT INTO product(id, name, price, stock, image_url, active) VALUES
+(1, "zapatillas", 100, 10, "nada", true),
+(2, "polera", 350, 100, "nada", true);
