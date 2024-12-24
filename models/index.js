@@ -2,7 +2,7 @@ const sequelize = require('../config/db');
 const {DataTypes} = require('sequelize');
 
 const User = require('./user.model')(sequelize, DataTypes);
-const Product = require('./user.model')(sequelize, DataTypes);
+const Product = require('./product.model')(sequelize, DataTypes);
 const Cart = require('./cart.model', sequelize, DataTypes);
 
 const db = {};

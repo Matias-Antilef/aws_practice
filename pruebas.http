@@ -16,3 +16,5 @@
 #     "email": "pablito@gmaial.com",
 #     "password": "pablito123"
 # }
+
+GET http://localhost:3000/product/getAll

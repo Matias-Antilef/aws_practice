@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-const Product = sequilize.define('product', {
+const Product = sequelize.define('product', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -24,4 +24,10 @@ const Product = sequilize.define('product', {
     active: {
         type: DataTypes.BOOLEAN
     }
-}) }
+}, {
+    freezeTableName: true,
+    timestamps: false  // Esto desactiva la pluralización automática
+})
+
+return Product
+}

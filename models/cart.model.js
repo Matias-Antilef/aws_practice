@@ -10,7 +10,7 @@ const Cart = sequilize.define('cart', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    product_id: {
+    Product_id: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
