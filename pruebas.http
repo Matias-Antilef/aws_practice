@@ -1,0 +1,18 @@
+# GET http://localhost:3000/
+
+# POST http://localhost:3000/auth/login
+# Content-Type: application/json
+
+# {
+#     "email": "pablito@gmaial.com",
+#     "password": "pablito123"
+# }
+
+# POST http://localhost:3000/auth/register
+# Content-Type: application/json
+
+# {
+#     "username":"pablitoClavoUnClavito",
+#     "email": "pablito@gmaial.com",
+#     "password": "pablito123"
+# }
