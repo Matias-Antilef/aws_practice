@@ -26,7 +26,7 @@ const Product = sequelize.define('product', {
     }
 }, {
     freezeTableName: true,
-    timestamps: false  // Esto desactiva la pluralización automática
+    timestamps: false 
 })
 
 return Product

@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('./models');
 const authRoutes = require('./routes/auth.routes');  
 const productRoutes = require('./routes/product.routes');  
+const cartRoutes = require('./routes/cart.routes');  
 
 const app = express();
 app.use(express.json());
@@ -11,7 +12,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
-app.use('/Product', productRoutes);
+app.use('/product', productRoutes);
+app.use('/cart', cartRoutes);
 
 
 db.sequelize.sync({ force: false })

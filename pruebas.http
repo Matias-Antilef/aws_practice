@@ -17,4 +17,6 @@
 #     "password": "pablito123"
 # }
 
-GET http://localhost:3000/product/getAll
+# GET http://localhost:3000/product/getAll
+
+POST http://localhost:3000/cart/payCart
