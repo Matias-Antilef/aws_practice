@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('¡API funcionando!');
+    res.send('Todo ok');
 });
 
 app.use('/auth', authRoutes);
@@ -17,7 +17,7 @@ app.use('/product', productRoutes);
 
 
 db.sequelize.sync({ force: false })
-    .then(() => console.log('Base de datos sincronizada'))
-    .catch((err) => console.error('Error al sincronizar la base de datos:', err));
+    .then(() => console.log('Database synced successfully'))
+    .catch((err) => console.error('Error syncing database:', err));
 
 module.exports = app;

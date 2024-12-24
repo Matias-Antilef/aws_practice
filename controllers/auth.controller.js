@@ -5,20 +5,20 @@ const User = db.User;
 const login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await User.findOne({ where: { email } });
+        const userExists = await User.findOne({ where: { email } });
 
-        if (!user) {
-            return res.status(404).json({ message: 'Usuario no encontrado' });
+        if (!userExists) {
+            return res.status(404).json({ message: 'User dont exists' });
         }
 
-        if (user.password === password) {
-            return res.status(200).json({ message: 'Login exitoso', user });
+        if (userExists.password === password) {
+            return res.status(200).json({ message: 'Approved', userExists });
+
         } else {
-            return res.status(401).json({ message: 'Contraseña incorrecta' });
+            return res.status(401).json({ message: 'Unauthorized' });
         }
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Error al procesar la solicitud', error });
+    } catch (err) {
+        return res.status(500).json({ message: 'Internal server error', err });
     }
 };
 
@@ -27,19 +27,18 @@ const register = async (req, res) => {
     const { username, email, password } = req.body;
     try {
         const userExists = await User.findOne({ where: { email } });
-
+        
         if (userExists) {
-            return res.status(400).json({ message: 'El usuario ya existe' });
+            return res.status(400).json({ message: 'User already exists' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await User.create({ username, email, password: hashedPassword });
+        await User.create({ username, email, password: hashedPassword });
 
-        res.status(201).json({ message: 'Usuario registrado exitosamente' });
+        return res.status(201).json({ message: 'User created successfully' });
     
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al registrar el usuario', error });
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error', err });
     }
 };
 
@@ -48,17 +47,13 @@ const getUsers = async (req, res) => {
         const userAll = await User.findAll();
 
         if (!userAll) {
-            return res.status(400).json({ message: 'No existen usuarios' });
+            return res.status(400).json({ message: 'Dont exists users' });
         }
-        return res.status(200).json({ message: 'Todos los usuarios:', userAll });
+        return res.status(200).json({ message: 'Users:', userAll });
     
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'No se pudo encontrar a los usuarios', error });
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error', err });
     }
 };
-
-
-
 
 module.exports = { login, register, getUsers };

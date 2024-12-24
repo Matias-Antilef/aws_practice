@@ -24,5 +24,5 @@ const User = sequelize.define('user', {
     freezeTableName: true,
     timestamps: false
 });
-return User
+    return User
 }
