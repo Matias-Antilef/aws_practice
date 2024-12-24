@@ -12,11 +12,13 @@
 # Content-Type: application/json
 
 # {
-#     "username":"pablitoClavoUnClavito",
-#     "email": "pablito@gmaial.com",
-#     "password": "pablito123"
+#     "username":"matias",
+#     "email": "matias@gmail.com",
+#     "password": "matias"
 # }
+
+GET http://localhost:3000/auth/getUsers
 
 # GET http://localhost:3000/product/getAll
 
-POST http://localhost:3000/cart/payCart
+# POST http://localhost:3000/cart/payCart

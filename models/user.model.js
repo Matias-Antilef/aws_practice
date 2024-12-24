@@ -20,6 +20,9 @@ const User = sequelize.define('user', {
         allowNull: false
     }
     
-},{timestamps: false});
+},{
+    freezeTableName: true,
+    timestamps: false
+});
 return User
 }

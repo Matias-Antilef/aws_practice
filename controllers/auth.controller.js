@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const db = require('../models');
 const User = db.User;
 
@@ -31,9 +32,10 @@ const register = async (req, res) => {
             return res.status(400).json({ message: 'El usuario ya existe' });
         }
 
-        const user = await User.create({ username, email, password });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = await User.create({ username, email, password: hashedPassword });
 
-        res.status(201).json({ message: 'Usuario registrado exitosamente', user });
+        res.status(201).json({ message: 'Usuario registrado exitosamente' });
     
     } catch (error) {
         console.error(error);
@@ -41,7 +43,22 @@ const register = async (req, res) => {
     }
 };
 
+const getUsers = async (req, res) => {
+    try {
+        const userAll = await User.findAll();
+
+        if (!userAll) {
+            return res.status(400).json({ message: 'No existen usuarios' });
+        }
+        return res.status(200).json({ message: 'Todos los usuarios:', userAll });
+    
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'No se pudo encontrar a los usuarios', error });
+    }
+};
 
 
 
-module.exports = { login, register };
+
+module.exports = { login, register, getUsers };
